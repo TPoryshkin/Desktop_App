@@ -146,6 +146,49 @@ class Program
         }
     }
 
+    static void LoadFromFile()
+    {
+        Console.Write("Enter filename: ");
+        string path = Console.ReadLine();
+
+        if (!File.Exists(path))
+        {
+            Console.WriteLine("File not found");
+            return;
+        }
+
+        try
+        {
+            items.Clear();
+            string[] lines = File.ReadAllLines(path);
+
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split('|');
+                if (parts.Length == 2)
+                {
+                    if (parts[0] == "Tip")
+                    {
+                        tipAmount = decimal.Parse(parts[1]);
+                    }
+                    else
+                    {
+                        items.Add(new MenuItem(
+                            parts[0],
+                            decimal.Parse(parts[1])
+                        ));
+                    }
+                }
+            }
+            Console.WriteLine($"Loaded from {path}");
+        }
+        catch
+        {
+            Console.WriteLine("Error loading file");
+        }
+    }
+
+
 
     static decimal CalculateNetTotal()
     {
