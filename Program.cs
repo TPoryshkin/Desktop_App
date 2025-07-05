@@ -24,6 +24,28 @@ class Program
         }
     }
 
+    static void RemoveItem()
+    {
+        if (items.Count == 0)
+        {
+            Console.WriteLine("No items to remove");
+            return;
+        }
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {items[i].Description} - ${items[i].Price}");
+        }
+
+        Console.Write("Enter item number to remove or 0 to cancel: ");
+        if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= items.Count)
+        {
+            items.RemoveAt(index - 1);
+            Console.WriteLine("Item removed");
+        }
+    }
+
+
 }
 
 class MenuItem
