@@ -7,6 +7,38 @@ class Program
     static List<MenuItem> items = new List<MenuItem>();
     static decimal tipAmount = 0;
 
+    static void Main()
+    {
+        while (true)
+        {
+            Console.WriteLine("Monk's Cafe");
+            Console.WriteLine("1. Add Item");
+            Console.WriteLine("2. Remove Item");
+            Console.WriteLine("3. Add Tip");
+            Console.WriteLine("4. Display Bill");
+            Console.WriteLine("5. Clear All");
+            Console.WriteLine("6. Save to file");
+            Console.WriteLine("7. Load from file");
+            Console.WriteLine("8. Exit");
+            Console.Write("\nEnter your choice: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1": AddItem(); break;
+                case "2": RemoveItem(); break;
+                case "3": AddTip(); break;
+                case "4": DisplayBill(); break;
+                case "5": ClearAll(); break;
+                case "6": SaveToFile(); break;
+                case "7": LoadFromFile(); break;
+                case "8": Console.WriteLine("Good-bye!"); return;
+                default: Console.WriteLine("Invalid choice"); break;
+            }
+            Console.WriteLine();
+        }
+    }
+
+
     static void AddItem()
     {
         Console.Write("Enter description: ");
