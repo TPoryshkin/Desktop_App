@@ -45,6 +45,62 @@ class Program
         }
     }
 
+    static void AddTip()
+    {
+        if (items.Count == 0)
+        {
+            Console.WriteLine("No items to add tip for");
+            return;
+        }
+
+        decimal netTotal = CalculateNetTotal();
+        Console.WriteLine($"Net Total: ${netTotal}");
+        Console.WriteLine("1. Tip Percentage");
+        Console.WriteLine("2. Tip Amount");
+        Console.WriteLine("3. No Tip");
+        Console.Write("Select method: ");
+
+        switch (Console.ReadLine())
+        {
+            case "1":
+                Console.Write("Enter tip %: ");
+                if (decimal.TryParse(Console.ReadLine(), out decimal percent))
+                {
+                    tipAmount = netTotal * percent / 100;
+                    Console.WriteLine("Tip added");
+                }
+                else Console.WriteLine("Invalid input");
+                break;
+
+            case "2":
+                Console.Write("Enter tip amount: ");
+                if (decimal.TryParse(Console.ReadLine(), out tipAmount))
+                {
+                    Console.WriteLine("Tip added");
+                }
+                else Console.WriteLine("Invalid input");
+                break;
+
+            case "3":
+                tipAmount = 0;
+                Console.WriteLine("Tip reset");
+                break;
+
+            default:
+                Console.WriteLine("Invalid choice");
+                break;
+        }
+    }
+
+    static decimal CalculateNetTotal()
+    {
+        decimal total = 0;
+        foreach (var item in items) total += item.Price;
+        return total;
+    }
+
+
+
 
 }
 
