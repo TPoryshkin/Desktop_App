@@ -123,6 +123,30 @@ class Program
         Console.WriteLine("All items cleared");
     }
 
+    static void SaveToFile()
+    {
+        Console.Write("Enter filename: ");
+        string path = Console.ReadLine();
+
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (var item in items)
+                {
+                    writer.WriteLine($"{item.Description}|{item.Price}");
+                }
+                writer.WriteLine($"Tip|{tipAmount}");
+            }
+            Console.WriteLine($"Saved to {path}");
+        }
+        catch
+        {
+            Console.WriteLine("Error saving file");
+        }
+    }
+
+
     static decimal CalculateNetTotal()
     {
         decimal total = 0;
