@@ -6,6 +6,24 @@ class Program
 {
     static List<MenuItem> items = new List<MenuItem>();
     static decimal tipAmount = 0;
+
+    static void AddItem()
+    {
+        Console.Write("Enter description: ");
+        string desc = Console.ReadLine();
+
+        Console.Write("Enter price: ");
+        if (decimal.TryParse(Console.ReadLine(), out decimal price))
+        {
+            items.Add(new MenuItem(desc, price));
+            Console.WriteLine("Item added successfully");
+        }
+        else
+        {
+            Console.WriteLine("Invalid price");
+        }
+    }
+
 }
 
 class MenuItem
