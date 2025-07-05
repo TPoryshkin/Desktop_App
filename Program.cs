@@ -116,6 +116,12 @@ class Program
         Console.WriteLine($"Total Amount\t${total}");
     }
 
+    static void ClearAll()
+    {
+        items.Clear();
+        tipAmount = 0;
+        Console.WriteLine("All items cleared");
+    }
 
     static decimal CalculateNetTotal()
     {
