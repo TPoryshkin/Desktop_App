@@ -92,6 +92,31 @@ class Program
         }
     }
 
+    static void DisplayBill()
+    {
+        if (items.Count == 0)
+        {
+            Console.WriteLine("No items to display");
+            return;
+        }
+
+        Console.WriteLine("Description\tPrice");
+        foreach (var item in items)
+        {
+            Console.WriteLine($"{item.Description}\t${item.Price}");
+        }
+
+        decimal netTotal = CalculateNetTotal();
+        decimal gst = netTotal * 0.05m;
+        decimal total = netTotal + tipAmount + gst;
+
+        Console.WriteLine($"\nNet Total\t${netTotal}");
+        Console.WriteLine($"Tip Amount\t${tipAmount}");
+        Console.WriteLine($"GST Amount\t${gst}");
+        Console.WriteLine($"Total Amount\t${total}");
+    }
+
+
     static decimal CalculateNetTotal()
     {
         decimal total = 0;
